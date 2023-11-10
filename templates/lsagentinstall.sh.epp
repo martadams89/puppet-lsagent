@@ -51,7 +51,7 @@ echo
 
 $usesudo "$local_installer"\
    --mode unattended \
-   --hostname "$lsagent_server_hostname"\
+   --server "$lsagent_server_hostname"\
    --port "$lsagent_server_port"\
    $additional_params
 
