@@ -43,15 +43,12 @@ fi
 
 chmod +x "$local_installer"
 
-command -v sudo > /dev/null && usesudo="sudo -E" || usesudo=""
 
 echo
 echo Running installer script $local_installer
 echo
 
-$usesudo "$local_installer"\
+"$local_installer"\
    --mode unattended \
    --server "$lsagent_server_hostname"\
    --port "$lsagent_server_port"\
-   $additional_params
-
