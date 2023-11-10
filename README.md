@@ -1,4 +1,4 @@
-# lsagent
+# LanSweeper Agent (For Linux)
 
 #### Table of Contents
 
