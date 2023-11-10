@@ -1,0 +1,3 @@
+---
+#lsagent::service_manage: False
+lsagent::service_provider: upstart
