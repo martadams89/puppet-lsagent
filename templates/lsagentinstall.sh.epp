@@ -49,7 +49,7 @@ echo
 echo Running installer script $local_installer
 echo
 
-$usesudo ."$local_installer"\
+$usesudo "$local_installer"\
    --mode unattended \
    --hostname "$lsagent_server_hostname"\
    --port "$lsagent_server_port"\
