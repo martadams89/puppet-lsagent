@@ -20,6 +20,7 @@ trap 'finalize' HUP INT QUIT TERM EXIT
 lsagent_server_hostname=<%= $lsagent::lsagent_server_hostname %>
 lsagent_server_port=<%= $lsagent::lsagent_server_port %>
 lsagent_server_version=<%= $lsagent::lsagent_server_version %>
+local_installer=/tmp/LsAgent-linux.run
 
 lsagent_installer_url="https://cdn.lansweeper.com/download/$lsagent_server_version/1/LsAgent-linux.run"
 
@@ -30,26 +31,9 @@ echo " * Port: $lsagent_server_port"
 echo " * Installer: $lsagent_installer_url"
 echo
 
-<% if $lsagent::lsagent_http_proxy_hostname { -%>
-<% if $lsagent::lsagent_http_proxy_user and $lsagent::lsagent_http_proxy_pass { -%>
-lsagent_http_proxy_value="http://<%= $lsagent::lsagent_http_proxy_user %>:<%= $lsagent::lsagent_http_proxy_pass %>@<%= $lsagent::lsagent_http_proxy_hostname %>:<%= $lsagent::lsagent_http_proxy_port %>"
-<% } else { -%>
-lsagent_http_proxy_value="http://<%= $lsagent::lsagent_http_proxy_hostname %>:<%= $lsagent::lsagent_http_proxy_port %>"
-<% } %>
-<% } else { -%>
-lsagent_http_proxy_value=""
-<% } %>
-
 echo "Downloading LanSweeper Agent installer..."
 
-if test -n "$lsagent_http_proxy_value"
-then
-  export use_proxy=yes
-  export http_proxy="$lsagent_http_proxy_value"
-  (wget --connect-timeout 300 --no-check-certificate -O "$local_installer" "$lsagent_installer_url" || wget --connect-timeout 300 --no-proxy --no-check-certificate -O "$local_installer" "$lsagent_installer_url" || curl --fail --connect-timeout 300 -k "$lsagent_installer_url" > "$local_installer") && echo "$local_installer" >> "$cleanup_file"
-else
-  (wget --connect-timeout 300 --no-check-certificate -O "$local_installer" "$lsagent_installer_url" || curl --fail --connect-timeout 300 -k "$lsagent_installer_url" > "$local_installer") && echo "$local_installer" >> "$cleanup_file"
-fi
+wget --connect-timeout 300 --no-check-certificate -O "$local_installer" "$lsagent_installer_url" || curl --fail --connect-timeout 300 -k "$lsagent_installer_url" > "$local_installer") && echo "$local_installer" >> "$cleanup_file"
 
 if test ! -s "$local_installer"
 then
@@ -65,7 +49,7 @@ echo
 echo Running installer script $local_installer
 echo
 
-$usesudo /bin/sh "$local_installer"\
+$usesudo ./"$local_installer"\
    --mode unattended \
    --hostname "$lsagent_server_hostname"\
    --port "$lsagent_server_port"\
