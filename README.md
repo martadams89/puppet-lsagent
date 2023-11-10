@@ -28,8 +28,6 @@ class { 'lsagent':
       lsagent_server_hostname      => $lsagent_server_hostname,
       lsagent_server_port          => $lsagent_server_port,
       lsagent_server_version       => $lsagent_server_version,
-      lsagent_http_proxy_hostname  => $lsagent_http_proxy_hostname,
-      lsagent_http_proxy_port      => $lsagent_http_proxy_port
 }
 ```
 

@@ -33,7 +33,7 @@ echo
 
 echo "Downloading LanSweeper Agent installer..."
 
-wget --connect-timeout 300 --no-check-certificate -O "$local_installer" "$lsagent_installer_url" || curl --fail --connect-timeout 300 -k "$lsagent_installer_url" > "$local_installer") && echo "$local_installer" >> "$cleanup_file"
+wget --connect-timeout 300 --no-check-certificate -O "$local_installer" "$lsagent_installer_url" || curl --fail --connect-timeout 300 -k "$lsagent_installer_url" > "$local_installer" && echo "$local_installer" >> "$cleanup_file"
 
 if test ! -s "$local_installer"
 then

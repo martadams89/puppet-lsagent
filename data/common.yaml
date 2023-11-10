@@ -2,8 +2,6 @@
 lsagent::lsagent_server_name: ""
 lsagent::lsagent_server_port: "9524"
 lsagent::lsagent_server_verison: "10.4.2"
-lsagent::lsagent_http_proxy_hostname: ""
-lsagent::lsagent_http_proxy_port: "3128"
 lsagent::service_enable: true
 lsagent::service_ensure: running
 lsagent::service_manage: true
