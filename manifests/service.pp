@@ -5,7 +5,7 @@
 class lsagent::service {
 
   if $lsagent::service_manage == true {
-    service { 'lsagent':
+    service { 'ls-agent':
       ensure     => $lsagent::service_ensure,
       enable     => $lsagent::service_enable,
       name       => $lsagent::service_name,
