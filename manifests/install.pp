@@ -1,10 +1,10 @@
 # @summary A short summary of the purpose of this class
 #
 # This class installs the lansweeper agent
-# 
+#
 class lsagent::install {
 
-  if ! $lsagent_path {
+  if ! $::lsagent_path {
 
     file { '/tmp/lsagentinstall.sh':
       ensure  => present,
