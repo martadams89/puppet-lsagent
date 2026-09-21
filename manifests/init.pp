@@ -39,9 +39,9 @@ class lsagent(
   Enum['running', 'stopped'] $service_ensure,
   Boolean $service_manage,
   String $service_name,
-  Optional[String] $service_provider = undef,
   Boolean $service_hasstatus,
-  Boolean $service_hasrestart
+  Boolean $service_hasrestart,
+  Optional[String] $service_provider = undef
 ){
 
   contain lsagent::install
