@@ -33,17 +33,17 @@
 #   include lsagent
 class lsagent(
   String $lsagent_server_hostname,
-  String $lsagent_server_port, 
+  String $lsagent_server_port,
   String $lsagent_server_version,
   Boolean $service_enable,
   Enum['running', 'stopped'] $service_ensure,
   Boolean $service_manage,
   String $service_name,
-  Optional[String] $service_provider = undef,
   Boolean $service_hasstatus,
-  Boolean $service_hasrestart
+  Boolean $service_hasrestart,
+  Optional[String] $service_provider = undef
 ){
-  
+
   contain lsagent::install
   contain lsagent::service
 
